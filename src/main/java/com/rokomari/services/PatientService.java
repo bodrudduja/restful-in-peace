@@ -10,9 +10,9 @@ public interface PatientService {
 
 	Patient getPatientById(long patient_id);
 
-	String addPatient(Patient patient);
+	Patient addPatient(Patient patient);
 
-	String updatePatientById(Long patient_id);
+	Patient updatePatientById(Long patient_id,Patient patient);
 
-	String deletePatientById(Long patient_id);
+	void deletePatientById(Long patient_id);
 }

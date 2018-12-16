@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 @Entity
-@Table(name = "patient")
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @Accessors(chain = true)
@@ -29,7 +29,6 @@ public class User {
 	@Column(name = "last_name")
 	private String last_name;
 
-	@NotNull
 	@Column(name = "email")
 	private String email;
 

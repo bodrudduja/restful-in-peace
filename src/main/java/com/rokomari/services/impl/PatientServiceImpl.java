@@ -2,42 +2,48 @@ package com.rokomari.services.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rokomari.beans.Patient;
+import com.rokomari.repositories.PatientRepository;
 import com.rokomari.services.PatientService;
 
 @Service
 public class PatientServiceImpl implements PatientService {
 
+	@Autowired
+	PatientRepository repo;
+	
 	@Override
 	public List<Patient> getAllPatients() {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.findAll();
 	}
 
 	@Override
 	public Patient getPatientById(long patient_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.findPatientById(patient_id);
 	}
 
 	@Override
-	public String addPatient(Patient patient) {
-		// TODO Auto-generated method stub
-		return null;
+	public Patient addPatient(Patient patient) {
+		return repo.save(patient);
 	}
 
 	@Override
-	public String updatePatientById(Long patient_id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Patient updatePatientById(Long patient_id,Patient patient) {
+		Patient p = repo.findPatientById(patient_id);
+		if (p == null) {
+			return p;
+		}
+		else {
+			patient.setId(patient_id);
+		}	return repo.save(patient);
 	}
 
 	@Override
-	public String deletePatientById(Long patient_id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void deletePatientById(Long patient_id) {
+		repo.deleteById(patient_id);
 	}
 
 }

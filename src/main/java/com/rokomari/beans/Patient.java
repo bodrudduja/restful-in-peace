@@ -4,15 +4,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.rokomari.Gender;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 @Entity
 @Table(name = "patient")
 @Data
-@NoArgsConstructor
 @Accessors(chain = true)
 public class Patient {
 
@@ -21,23 +20,24 @@ public class Patient {
 	@JsonIgnore
 	private Long id;
 
-	@NotNull(message = "Client's name can not be empty")
+	@NotNull(message = "Patient's name can not be empty")
 	private String name;
 
 	@NotNull
-	@Column(name = "mobile")
+	@Column(name = "mobile", length=15)
 	private String mobile;
 
-	@Column(name = "age")
+	@Column(name = "age", length=3)
 	private Long age;
-
+	
+	@NotNull
 	@Column(name = "gender")
-	private String gender;
+	private Gender gender;
 
-	@Column(name = "occupation")
+	@Column(name = "occupation", length=50)
 	private String occupation;
 
-	@Column(name = "symptom_summery")
+	@Column(name = "symptom_summery", length=1000)
 	private String symptom_summery;
 
 	@PrePersist

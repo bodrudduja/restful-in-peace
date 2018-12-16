@@ -1,46 +1,63 @@
 package com.rokomari.controllers;
 
 import java.util.List;
-import javax.validation.Valid;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.rokomari.beans.Patient;
+import com.rokomari.beans.Status;
 import com.rokomari.services.PatientService;
 
-//@RestController
+import ch.qos.logback.classic.Logger;
+
+@RestController
 public class PatientController {
-/*
+
+	public static final Logger logger = (Logger) LoggerFactory.getLogger(PatientController.class);
 	@Autowired
 	private PatientService service;
 
 	@RequestMapping(value = "/api/patients", method = RequestMethod.GET)
 	public List<Patient> getAllPatients(@RequestHeader String token, @RequestHeader String jwt_token) {
-		List<Patient> addressList = service.getAllPatients();
-		return addressList;
+		return service.getAllPatients();
 	}
 
-	@RequestMapping(value = "/api/patients", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/patients", method = RequestMethod.GET, headers = "patient_id")
 	public Patient getPatientById(@RequestHeader String token, @RequestHeader String jwt_token,
 			@RequestHeader Long patient_id) {
 		return service.getPatientById(patient_id);
 	}
 
 	@RequestMapping(value = "/api/insert/patient/new", method = RequestMethod.POST)
-	public String addPatient(@RequestHeader String token, @RequestHeader String jwt_token,
-			@RequestBody @Valid Patient patient) {
-		return service.addPatient(patient);
+	public ResponseEntity<Status> addPatient(@RequestHeader String token, @RequestHeader String jwt_token,
+			@RequestBody Patient patient) {
+		Patient d = null;
+		d = service.addPatient(patient);
+		if (d != null)
+			return new ResponseEntity<>(new Status("success"), HttpStatus.CREATED);
+		else
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
 	}
 
 	@RequestMapping(value = "/api/update/patients", method = RequestMethod.PUT)
-	public String updatePatientById(@RequestHeader String token, @RequestHeader String jwt_token,
-			@RequestHeader Long patient_id) {
-		return service.updatePatientById(patient_id);
+	public ResponseEntity<Status> updatePatientById(@RequestHeader String token, @RequestHeader String jwt_token,
+			@RequestHeader Long patient_id, @RequestBody Patient patient) {
+		Patient d = null;
+		d = service.updatePatientById(patient_id, patient);
+		if (d != null)
+			return new ResponseEntity<>(new Status("updated"), HttpStatus.CREATED);
+		else
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
-	@RequestMapping(value = "/api/delete/patients", method = RequestMethod.PUT)
-	public String deletePatientById(@RequestHeader String token, @RequestHeader String jwt_token,
+	@RequestMapping(value = "/api/delete/patients", method = RequestMethod.DELETE)
+	public ResponseEntity<Status> deletePatientById(@RequestHeader String token, @RequestHeader String jwt_token,
 			@RequestHeader Long patient_id) {
-		return service.deletePatientById(patient_id);
-	}*/
+		service.deletePatientById(patient_id);
+		return new ResponseEntity<>(new Status("deleted"), HttpStatus.OK);
+	}
 }
