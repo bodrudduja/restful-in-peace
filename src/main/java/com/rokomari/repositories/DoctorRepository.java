@@ -14,5 +14,5 @@ public interface DoctorRepository extends CrudRepository<Doctor, Long> {
 
 	public Doctor findDoctorById(Long id);
 
-	public Doctor deleteDoctorById(Long id);
+	public void deleteById(Long id);
 }

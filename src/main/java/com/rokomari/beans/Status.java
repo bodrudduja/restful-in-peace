@@ -7,11 +7,11 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class Status {
 
-	String sataus;
+	String status;
 
 	public Status(String sataus) {
 		super();
-		this.sataus = sataus;
+		this.status = sataus;
 	}
 
 }

@@ -31,9 +31,9 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 
 	@Override
-	public String deleteDoctorById(Long patient_id) {
-		// TODO Auto-generated method stub
-		return "Didn't implemented";
+	public void deleteDoctorById(Long doctor_id) {
+		
+		 repo.deleteById(doctor_id);
 	}
 
 	@Override
@@ -42,8 +42,10 @@ public class DoctorServiceImpl implements DoctorService {
 		Doctor d = repo.findDoctorById(doctor_id);
 		if (d == null) {
 			return d;
-		} else
-			return repo.save(doctor);
+		}
+		else {
+			doctor.setId(doctor_id);
+		}	return repo.save(doctor);
 	}
 
 }

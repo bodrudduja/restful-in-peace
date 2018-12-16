@@ -54,10 +54,10 @@ public class DoctorController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
-	@RequestMapping(value = "/api/delete/doctors", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/delete/doctors", method = RequestMethod.DELETE)
 	public ResponseEntity<Status> deleteDoctorById(@RequestHeader String token, @RequestHeader String jwt_token,
 			@RequestHeader Long doctor_id) {
 		service.deleteDoctorById(doctor_id);
-		return new ResponseEntity<>(new Status("deleted"), HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(new Status("deleted"), HttpStatus.OK);
 	}
 }
