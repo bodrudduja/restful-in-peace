@@ -16,7 +16,6 @@ import ch.qos.logback.classic.Logger;
 @RestController
 public class DoctorController {
 
-	public static final Logger logger = (Logger) LoggerFactory.getLogger(DoctorController.class);
 	@Autowired
 	private DoctorService service;
 
