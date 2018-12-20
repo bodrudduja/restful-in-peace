@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
 @Table(name = "users")
 @Data
 @Accessors(chain = true)
-public class User {
+public class JwtUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,9 +38,15 @@ public class User {
 	@Column(name = "mobile")
 	private String mobile;
 	
+	private String role;
 	@Column(name = "password", length = 250)
 	@JsonIgnore
 	private String password ;
 	@Transient
 	private String status = "success";
+	
+	@PrePersist
+	private void onSave() {
+		role = "ROLE_USER";
+}
 }

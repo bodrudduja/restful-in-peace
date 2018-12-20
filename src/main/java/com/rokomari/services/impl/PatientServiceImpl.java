@@ -22,7 +22,7 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	public Patient getPatientById(long patient_id) {
-		return repo.findPatientById(patient_id);
+		return repo.findPatientByPatientId(patient_id);
 	}
 
 	@Override
@@ -32,12 +32,12 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	public Patient updatePatientById(Long patient_id,Patient patient) {
-		Patient p = repo.findPatientById(patient_id);
+		Patient p = repo.findPatientByPatientId(patient_id);
 		if (p == null) {
 			return p;
 		}
 		else {
-			patient.setId(patient_id);
+			patient.setPatientId(patient_id);
 		}	return repo.save(patient);
 	}
 

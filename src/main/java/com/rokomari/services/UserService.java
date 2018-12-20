@@ -1,11 +1,12 @@
 package com.rokomari.services;
 
-import com.rokomari.beans.User;
+import com.rokomari.beans.JwtUser;
+import com.rokomari.beans.LoginSuccessResponse;
 
 public interface UserService {
 
-	User addUser(User user);
+	JwtUser addUser(JwtUser user);
 	
-	User loginUser();
+	LoginSuccessResponse loginUser(String email, String password);
 	
 }

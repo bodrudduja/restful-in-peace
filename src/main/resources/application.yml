@@ -4,7 +4,7 @@ spring:
  profiles.active: dev
 ---
 spring:
- profiles: dev
+ profiles: prod
  jpa:
   database: MySQL
   generate-ddl: true
@@ -25,7 +25,37 @@ spring:
  jackson:
   default-property-inclusion: NON_NULL
 server.port: 8081
+
 ---
+spring:
+  profiles: dev
+  jpa:
+    database: MySQL
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+      hibernate.format-sql: true
+      hibernate.jdbc:
+        lob.non_contextual_creation: true
+  datasource:
+    name: rest_in_peace
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost/rest_in_peace
+    username: rokomari
+    password: rokomari
+
+server.port: 8080
+jwt:
+  secret: rokomari
+---
+
+
+
+---
+
+
 spring:
  profiles: test
  jpa:

@@ -17,7 +17,7 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public Doctor getDoctorById(Long doctor_id) {
-		return repo.findDoctorById(doctor_id);
+		return repo.findDoctorByDoctorId(doctor_id);
 	}
 
 	@Override
@@ -39,12 +39,12 @@ public class DoctorServiceImpl implements DoctorService {
 	@Override
 	public Doctor updateDoctorById(Long doctor_id, Doctor doctor) {
 		// TODO Auto-generated method stub
-		Doctor d = repo.findDoctorById(doctor_id);
+		Doctor d = repo.findDoctorByDoctorId(doctor_id);
 		if (d == null) {
 			return d;
 		}
 		else {
-			doctor.setId(doctor_id);
+			doctor.setDoctorId(doctor_id);
 		}	return repo.save(doctor);
 	}
 

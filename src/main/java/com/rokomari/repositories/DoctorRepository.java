@@ -12,7 +12,7 @@ public interface DoctorRepository extends CrudRepository<Doctor, Long> {
 
 	public List<Doctor> findAll();
 
-	public Doctor findDoctorById(Long id);
+	public Doctor findDoctorByDoctorId(Long id);
 
 	public void deleteById(Long id);
 }

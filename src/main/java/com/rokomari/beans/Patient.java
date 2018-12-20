@@ -1,5 +1,8 @@
 package com.rokomari.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -18,7 +21,7 @@ public class Patient {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JsonIgnore
-	private Long id;
+	private Long patientId;
 
 	@NotNull(message = "Patient's name can not be empty")
 	private String name;
@@ -32,6 +35,7 @@ public class Patient {
 
 	@NotNull
 	@Column(name = "gender")
+	@Enumerated(EnumType.STRING)
 	private Gender gender;
 
 	@Column(name = "occupation", length = 50)
@@ -39,7 +43,10 @@ public class Patient {
 
 	@Column(name = "symptom_summery", length = 1000)
 	private String symptom_summery;
-
+	
+	@ManyToMany(mappedBy="patient")
+	List<Doctor> doctor = new ArrayList<>();
+	
 	@PrePersist
 	private void onSave() {
 

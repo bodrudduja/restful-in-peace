@@ -11,7 +11,7 @@ import com.rokomari.beans.Patient;
 public interface PatientRepository extends CrudRepository<Patient, Long> {
 	public List<Patient> findAll();
 
-	public Patient findPatientById(Long id);
+	public Patient findPatientByPatientId(Long id);
 
 	public void deleteById(Long id);
 }
