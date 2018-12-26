@@ -6,7 +6,7 @@ spring:
 spring:
  profiles: prod
  jpa:
-  database: MySQL
+  database: MYSQL
   generate-ddl: true
   hibernate:
    ddl-auto: update
@@ -25,12 +25,11 @@ spring:
  jackson:
   default-property-inclusion: NON_NULL
 server.port: 8081
-
 ---
 spring:
   profiles: dev
   jpa:
-    database: MySQL
+    database: MYSQL
     generate-ddl: true
     hibernate:
       ddl-auto: update
@@ -45,32 +44,6 @@ spring:
     url: jdbc:mysql://localhost/rest_in_peace
     username: rokomari
     password: rokomari
+    initialization-mode: always
 
 server.port: 8080
-jwt:
-  secret: rokomari
----
-
-
-
----
-
-
-spring:
- profiles: test
- jpa:
-  show-sql: true
-  generate-ddl: true
-  hibernate:
-   ddl-auto: create-drop
-  properties:
-     hibernate.dialect: org.hibernate.dialect.H2Dialect
-     hibernate.format-sql: true
- datasource:
-   name: testdb
-   driverClassName: org.h2.Driver
-   url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
-   username: sa
-   password: null
- 
-server.port: 8081

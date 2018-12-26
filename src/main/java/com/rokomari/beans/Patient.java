@@ -16,24 +16,25 @@ import lombok.experimental.Accessors;
 @Table(name = "patient")
 @Data
 @Accessors(chain = true)
+@SequenceGenerator(name = "patient_seq", initialValue = 1, allocationSize = 50)
 public class Patient {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "patient_seq")
 	@JsonIgnore
 	private Long patientId;
 
 	@NotNull(message = "Patient's name can not be empty")
 	private String name;
-
-	@NotNull
+	
 	@Column(name = "mobile", length = 15)
 	private String mobile;
-
+	
+	@NotNull (message = "Patient's age can not be empty")
 	@Column(name = "age", length = 3)
 	private Long age;
 
-	@NotNull
+	@NotNull (message = "Patient's gender can not be empty")
 	@Column(name = "gender")
 	@Enumerated(EnumType.STRING)
 	private Gender gender;

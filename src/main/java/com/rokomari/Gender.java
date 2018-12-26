@@ -1,5 +1,5 @@
 package com.rokomari;
 
 public enum Gender {
-	male,female,other
+	male, female, other
 }

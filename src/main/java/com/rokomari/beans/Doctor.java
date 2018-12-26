@@ -17,17 +17,18 @@ import lombok.experimental.Accessors;
 @Table(name = "doctor")
 @Data
 @Accessors(chain = true)
+@SequenceGenerator(name = "doctor_seq", initialValue = 1, allocationSize = 50)
 public class Doctor {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "doctor_seq")
 	@JsonIgnore
 	private Long doctorId;
 
 	@NotNull(message = "Doctor's name can not be empty")
 	private String name;
 
-	@NotNull
+	@NotNull (message = "Doctor's dept can not be empty")
 	@Column(name = "dept")
 	private String dept;
 
